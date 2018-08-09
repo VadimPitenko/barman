@@ -6,8 +6,9 @@
 # Class (KEYWORD1)
 #######################################
 
+BaseMotor		KEYWORD1
 ElevatorMotor	KEYWORD1
-TableMotor	KEYWORD1
+TableMotor		KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)

@@ -6,33 +6,21 @@
 #include "Arduino.h"
 #include "ElevatorMotor.h"
 
-ElevatorMotor::ElevatorMotor(int pin1, int pin2, int pin3, int pin4, int optPin)
+ElevatorMotor::ElevatorMotor(int pin1, int pin2, int pin3, int pin4, int optPin) : BaseMotor(pin1, pin2, pin3, pin4, optPin)
 {
-	_pins[0] = pin1;
-	_pins[1] = pin2;
-	_pins[2] = pin3;
-	_pins[3] = pin4;
-	_optPin = optPin;
-	_delay = 1;
-	_optPinAnalog = false;
-}
-
-void ElevatorMotor::init()
-{
-	for(int i=0; i<4; i++)
-		pinMode(_pins[i], OUTPUT);
-
-	pinMode(_optPin, INPUT);
-}
-
-void ElevatorMotor::setDelay(int delay)
-{
-	_delay = delay;
-}
-
-void ElevatorMotor::setOptPinToAnalog()
-{
-	_optPinAnalog = true;
+	const int _EMsteps[32] = {
+		1, 0, 0, 0,
+		1, 1, 0, 0,
+		0, 1, 0, 0,
+		0, 1, 1, 0,
+		0, 0, 1, 0,
+		0, 0, 1, 1,
+		0, 0, 0, 1,
+		1, 0, 0, 1
+	};
+	
+	for(int i=0; i<32; i++)
+		_steps[i] = _EMsteps[i];
 }
 
 bool ElevatorMotor::isOptClosed()
@@ -63,37 +51,4 @@ bool ElevatorMotor::renull()
 
 	//Serial.println("FAILED SM Set to NULL");
 	return false;
-}
-	
-void ElevatorMotor::moveTo(int stepsCnt, bool forward)
-{
-	for(int i=0; i<stespCnt; i++)
-		move(forward);
-}
-
-void ElevatorMotor::moveTo(int stepsCnt)
-{
-	for(int i=0; i<stespCnt; i++)
-		move(true);
-}
-
-void ElevatorMotor::move(bool forward)
-{
-	if(forward)
-		_step++;
-	else
-		_step--;
-
-	updateValues();
-}
-	
-void ElevatorMotor::updateValues()
-{
-	_takt = (8+_step%8)%8;
-	int idx = (_takt%8)*4;
-
-	for(int i=0; i<4; i++)
-		digitalWrite(_pins[i], _steps[idx+i]);
-	
-	delay(_delay);
 }
