@@ -1,0 +1,27 @@
+#######################################
+# Syntax Coloring Map For Barman
+#######################################
+
+#######################################
+# Class (KEYWORD1)
+#######################################
+
+ElevatorMotor	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+# ElevatorMotor Class
+init		KEYWORD2
+renull		KEYWORD2
+setDelay	KEYWORD2
+
+setOptPinToAnalog	KEYWORD2
+	
+moveTo	KEYWORD2
+move	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
