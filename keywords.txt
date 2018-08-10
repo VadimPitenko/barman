@@ -9,6 +9,7 @@
 BaseMotor		KEYWORD1
 ElevatorMotor	KEYWORD1
 TableMotor		KEYWORD1
+Pumps			KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)

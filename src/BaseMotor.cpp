@@ -74,8 +74,12 @@ void BaseMotor::updateValues()
 	_takt = (8+_step%8)%8;
 	int idx = (_takt%8)*4;
 
-	for(int i=0; i<4; i++)
+	for(int i=0; i<4; i++) {
+		//Serial.print(_steps[idx+i]);
+		//Serial.print(" ");
 		digitalWrite(_pins[i], _steps[idx+i]);
+	}
+	//Serial.println(" ");
 	
 	delay(_delay);
 }
